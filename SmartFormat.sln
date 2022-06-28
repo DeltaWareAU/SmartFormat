@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeltaWare.SDK.SmartFormat", "src\DeltaWare.SDK.SmartFormat\DeltaWare.SDK.SmartFormat.csproj", "{1496E0AC-51CA-4744-B3BF-3E297AF0A285}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B4567C6C-C4A4-4F0B-A916-4438E533EA71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeltaWare.SDK.SmartFormat.Tests", "tests\DeltaWare.SDK.SmartFormat.Tests\DeltaWare.SDK.SmartFormat.Tests.csproj", "{22FC32C8-700C-418C-9723-A29DF486A29E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FF75D3A2-E8D1-4522-8E20-7F5ED85758B6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1496E0AC-51CA-4744-B3BF-3E297AF0A285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1496E0AC-51CA-4744-B3BF-3E297AF0A285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1496E0AC-51CA-4744-B3BF-3E297AF0A285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1496E0AC-51CA-4744-B3BF-3E297AF0A285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22FC32C8-700C-418C-9723-A29DF486A29E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22FC32C8-700C-418C-9723-A29DF486A29E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22FC32C8-700C-418C-9723-A29DF486A29E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22FC32C8-700C-418C-9723-A29DF486A29E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{22FC32C8-700C-418C-9723-A29DF486A29E} = {B4567C6C-C4A4-4F0B-A916-4438E533EA71}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA4BC2B2-5C2E-450C-9237-20BA34B7CDB9}
+	EndGlobalSection
+EndGlobal
