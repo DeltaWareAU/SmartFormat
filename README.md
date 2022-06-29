@@ -6,7 +6,7 @@ SmartFormat was built to provide a tool that supported the following requirement
 * Unordered arguments.
 * Continued support for standard .Net formatting.
 
-Whilst SmartFormat does have some similarities with .Nets standard way of string formatting it does differ in some significant ways.
+Whilst SmartFormat does have some similarities with the standard .Net way of string formatting it does differ in some significant ways.
 
 ## Declaring a Variable
 A variable is declared using the following syntax ```{myVariable}```. A declared variable can also be decorated to change how it is formatted.
@@ -18,39 +18,55 @@ If you would like to use a ```{``` or ```}``` in your template without it being 
 
 Now that you've seen how to declare variables let's show some example.
 
+### Example 1
+```csharp
+var format  = "FirstName: {firstName}";
 
-### Example A
+var args = new Dictionary<string, object>
+{
+	{ "firstName", "John" }
+};
 
-FormatString ```"FirstName: {firstName}"```
+var result = SmartFormat.Parse(format, args);
 
-Arguments ```{ "firstName", "John" }```
+// Result: "FirstName: John"
+```
+### Example 2
+```csharp
+var format  = "FirstName: {firstName} LastName: {lastName?}";
 
-Output ```"FirstName: John"```
+var args = new Dictionary<string, object>
+{
+	{ "firstName", "John" }
+};
 
-### Example B
+var result = SmartFormat.Parse(format, args);
 
-FormatString ```"FirstName: {firstName} LastName: {lastName?}"```
+// Result: "FirstName: John LastName: "
+```
+### Example 3
+```csharp
+var format  = "{date?:d}";
 
-Arguments ```{ "firstName", "John" }```
+var args = new Dictionary<string, object>
+{
+	{ "date", new DateTime(2020, 05, 05) }
+};
 
-Output ```"FirstName: John LastName: "```
+var result = SmartFormat.Parse(format, args);
 
-### Example C
+// Result: "5/05/2020"
+```
+### Example 4
+```csharp
+var format  = "{date?:d}";
 
-FormatString ```"{date:d}"```
+var args = new Dictionary<string, object>();
 
-Arguments ```{ "date", new DateTime(2020, 05, 05) }```
+var result = SmartFormat.Parse(format, args);
 
-Output ```"5/05/2020"```
-
-### Example D
-
-FormatString ```"{date?:d}"```
-
-Arguments ```{ }```
-
-Output ```""```
-
+// Result: ""
+```
 
 ## Declaring a Concatenated Variable
 As you could see from the above examples. It almost acts the same as .Nets string.Format. But now we're going to discuss concatenated variables.
@@ -63,39 +79,63 @@ If you would like to use a ```[``` or ```]``` in your template without it being 
 
 Now that you've seen how to declare concatenated variables let's show some example.
 
-### Example A
+### Example 1
+```csharp
+var format  = "[FirstName: {firstName}] [LastName: {lastName?}]";
 
-FormatString ```"[FirstName: {firstName}] [LastName: {lastName?}]"```
+var args = new Dictionary<string, object>
+{
+	{ "firstName", "John" }
+};
 
-Arguments ```{ "firstName", "John" }```
+var result = SmartFormat.Parse(format, args);
 
-Output ```"FirstName: John"```
+// Result: "FirstName: John"
+```
+### Example 2
+```csharp
+var format  = "[{days?} Days] [{hours?} Hours] [{minutes?} Minutes] [and {seconds?}] Seconds";
 
-### Example B
+var args = new Dictionary<string, object>
+{
+	{ "hours", 5 },
+	{ "seconds", 30 }
+};
 
-FormatString ```"[{days?} Days] [{hours?} Hours] [{minutes?} Minutes] [and {seconds?}] Seconds"```
+var result = SmartFormat.Parse(format, args);
 
-Arguments ```{ "Hours", 5 }, { "Seconds", 30 }```
+// Result: "5 Hours and 30 Seconds"
+```
+### Example 3
+```csharp
+var format  = "{baseUrl}/api/{resource}[/{template}][?{query}]";
 
-Output ```"5 Hours and 30 Seconds"```
+var args = new Dictionary<string, object>
+{
+	{ "baseUrl", "http://localhost" }, 
+	{ "resource", "Students" }, 
+	{ "template", 5 }
+};
 
-### Example C
+var result = SmartFormat.Parse(format, args);
 
-FormatString ```"{baseUrl}/api/{resource}[/{template}][?{query}]"```
+// Result: "http://localhost/api/resource/Students/5"
+```
+### Example 4
+```csharp
+var format  = "{baseUrl}/api/{resource}[/{template}][?{query}]";
 
-Arguments ```{ "baseUrl", "http://localhost" }, { "resource", "Students" }, { "template", 5 }```
+var args = new Dictionary<string, object>
+{
+	{ "baseUrl", "http://localhost" }, 
+	{ "resource", "Students" }, 
+	{ "query", "firstName=John&lastName=Smith" }
+};
 
-Output ```"http://localhost/api/resource/Students/5"```
+var result = SmartFormat.Parse(format, args);
 
-### Example D
-
-FormatString ```"{baseUrl}/api/{resource}[/{template}][?{query}]"```
-
-Arguments ```{ "baseUrl", "http://localhost" }, { "resource", "Students" }, { "query", "firstName=John&lastName=Smith" }```
-
-Output ```"http://localhost/api/resource/Students?firstName=John&lastName=Smith"```
-
-As you can see from the above examples, some minor adjustments to the syntax of a format template can offer some powerful utility in string formatting.
+// Result: "http://localhost/api/resource/Students?firstName=John&lastName=Smith"
+```
 
 # Code Example
 ### Parse from Dictionary Arguments
