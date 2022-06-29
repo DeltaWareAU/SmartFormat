@@ -6,11 +6,22 @@ using System.Text;
 
 namespace DeltaWare.SDK.SmartFormat
 {
+    /// <summary>
+    /// Parses Smart Format.
+    /// </summary>
     public static class SmartFormat
     {
-        public static string Parse(string format, Dictionary<string, object> args)
+        /// <summary>
+        /// Parses the Smart Format template against the arguments.
+        /// </summary>
+        /// <param name="smartFormatTemplate">A composite Smart Format string.</param>
+        /// <param name="args">The arguments to be formatted.</param>
+        /// <returns>A copy of <paramref name="smartFormatTemplate"/> in which any format items are replaced by the string representation contained in <paramref name="args"/>.</returns>
+        /// <exception cref="KeyNotFoundException"/>
+        /// <exception cref="FormatException"/>
+        public static string Parse(string smartFormatTemplate, Dictionary<string, object> args)
         {
-            ISmartSegment[] segments = SmartSegmentParser.ParseSegments(format);
+            ISmartSegment[] segments = SmartSegmentParser.ParseSegments(smartFormatTemplate);
 
             StringBuilder formatBuilder = new StringBuilder();
 
@@ -41,9 +52,17 @@ namespace DeltaWare.SDK.SmartFormat
             return formatBuilder.ToString();
         }
 
-        public static string Parse(string format, object args)
+        /// <summary>
+        /// Parses the Smart Format template against the definition.
+        /// </summary>
+        /// <param name="smartFormatTemplate">A composite Smart Format string.</param>
+        /// <param name="definition">An object containing the arguments to be formatted.</param>
+        /// <returns>A copy of <paramref name="smartFormatTemplate"/> in which any format items are replaced by the string representation contained in <paramref name="definition"/>.</returns>
+        /// <exception cref="KeyNotFoundException"/>
+        /// <exception cref="FormatException"/>
+        public static string Parse(string smartFormatTemplate, object definition)
         {
-            return Parse(format, args.GetPublicPropertiesAsDictionary());
+            return Parse(smartFormatTemplate, definition.GetPublicPropertiesAsDictionary());
         }
     }
 }
